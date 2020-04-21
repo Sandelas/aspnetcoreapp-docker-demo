@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 env:
   DOCKER_IMAGE_NAME: 'vsaspdotnetcoreapp'
-  AZURE_WEB_APP: 'vsaspnetcoreapp-docker-demo'
+  AZURE_WEB_APP: 'vsaspdocker'
 jobs:
 
   build:
