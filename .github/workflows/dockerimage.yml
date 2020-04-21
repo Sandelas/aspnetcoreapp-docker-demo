@@ -1,5 +1,5 @@
 name: Docker Image Deployment to Azure WebApp
-#test
+
 on:
   push:
     branches: [ master ]
