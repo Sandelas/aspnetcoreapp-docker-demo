@@ -32,20 +32,11 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-#    - name: Azure WebApp Deployment
-#      uses: Azure/webapps-deploy@v2
-#      with:
-#        app-name: '${{env.AZURE_WEB_APP}}'
-#        publish-profile::  
-#        images: vsazurecr.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
-        
-
+        creds: ${{ secrets.AZURE_CREDENTIALS }}     
     - name: Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
        app-name: '${{env.AZURE_WEB_APP}}'
-       publish-profile: ${{ secrets.publish_profile }}
        images: vsazurecr.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
 
 
