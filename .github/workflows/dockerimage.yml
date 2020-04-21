@@ -15,5 +15,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Azure Container Registry Login
+      uses: Azure/docker-login@v1
+      with:
+         username: ${{ secrets.DOCKER_USER }} 
+         password: ${{ secrets.DOCKER_PASSWORD }} 
+         login-server: vsazurecr.azurecr.io
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag '${{env.DOCKER_IMAGE_NAME}}':latest
+    - name: Tag the Docker image
+      run: docker tag '${{env.DOCKER_IMAGE_NAME}}':latest vsazurecr.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
+    - name: Push the Docker image
+      run: docker push vsazurecr.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
+      
+
+      
