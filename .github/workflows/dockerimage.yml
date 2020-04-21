@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 env:
   DOCKER_IMAGE_NAME: 'vsaspdo'
-  AZURE_WEB_APP: 'vsaspdocker'
+  AZURE_WEB_APP: 'https://vsaspdocker.azurewebsites.net'
 jobs:
 
   build:
