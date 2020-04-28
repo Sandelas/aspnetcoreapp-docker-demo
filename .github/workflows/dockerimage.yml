@@ -21,13 +21,13 @@ jobs:
       with:
          username: ${{ secrets.DOCKER_USER }} 
          password: ${{ secrets.DOCKER_PASSWORD }} 
-         login-server: vsgheacr1.azurecr.io
+         login-server: edtghe.azurecr.io
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag '${{env.DOCKER_IMAGE_NAME}}':latest
     - name: Tag the Docker image
-      run: docker tag '${{env.DOCKER_IMAGE_NAME}}':latest vsgheacr1.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
+      run: docker tag '${{env.DOCKER_IMAGE_NAME}}':latest edtghe.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
     - name: Push the Docker image
-      run: docker push vsgheacr1.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
+      run: docker push edtghe.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
       
     - name: Azure Login
       uses: azure/login@v1
@@ -37,7 +37,7 @@ jobs:
       uses: Azure/webapps-deploy@v2
       with:
        app-name: '${{env.AZURE_WEB_APP}}'
-       images: vsgheacr1.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
+       images: edtghe.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
 
 
 
