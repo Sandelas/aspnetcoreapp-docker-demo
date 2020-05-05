@@ -15,27 +15,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
- #   - name: Azure Container Registry Login
- #     uses: Azure/docker-login@v1
- #     with:
- #        username: ${{ secrets.DOCKER_USER }} 
- #        password: ${{ secrets.DOCKER_PASSWORD }} 
- #        login-server: edtghe.azurecr.io
-   
-    - name: Microsoft Azure Container Registry Login
-      uses: elgohr/acr-login-action@0.1
+    - name: Azure Container Registry Login
+      uses: Azure/docker-login@v1
       with:
-    # The ACR service principal to use for login
-        service_principal: ${{ secrets.AZURE_CREDENTIALS }}  
-    # The password of the service principal
-        service_principal_password: ${{ secrets.AZURE_CREDENTIALS }}  
-    # The ACR tenant to use for login
-        tenant: ${{ secrets.AZURE_CREDENTIALS }}  
-    # The ACR registry to use
-        registry: edtghe.azurecr.io
-    # The ACR repository to use
-        repository: '${{env.DOCKER_IMAGE_NAME}}'
-    
+        username: ${{ secrets.DOCKER_USER }} 
+        password: ${{ secrets.DOCKER_PASSWORD }} 
+        login-server: edtghe.azurecr.io
+   
+   
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag '${{env.DOCKER_IMAGE_NAME}}':latest
     - name: Tag the Docker image
