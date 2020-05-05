@@ -1,5 +1,4 @@
 name: Docker Image Deployment to Azure WebApp
-
 on:
   push:
     branches: [ master ]
