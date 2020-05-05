@@ -8,7 +8,6 @@ env:
   DOCKER_IMAGE_NAME: 'vsaspdo'
   AZURE_WEB_APP: 'vsaspdotnetdocker'
 jobs:
-
   build:
 
     runs-on: ubuntu-latest
