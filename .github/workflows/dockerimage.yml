@@ -25,7 +25,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag '${{env.DOCKER_IMAGE_NAME}}':${{ github.sha }}
     - name: Tag the Docker image
-      run: docker tag '${{env.DOCKER_IMAGE_NAME}}':latest vsaspdotnetcore.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':${{ github.sha }}
+      run: docker tag '${{env.DOCKER_IMAGE_NAME}}':${{ github.sha }} vsaspdotnetcore.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':${{ github.sha }}
     - name: Push the Docker image
       run: docker push vsaspdotnetcore.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':${{ github.sha }}
       
