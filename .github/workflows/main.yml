@@ -59,7 +59,7 @@ jobs:
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
       with:
-        manifests: ''
+        manifests: myimage:d0267a697197e76d6d62da3603398b5fc413fa6d
         images: |
           ${{ env.REGISTRY_NAME }}.azurecr.io/myimage:${{ github.sha }}
         imagepullsecrets: |
