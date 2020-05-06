@@ -1,9 +1,9 @@
 name: Docker Image Deployment to Azure WebApp
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
 env:
   DOCKER_IMAGE_NAME: 'aspdotnetdocker'
   AZURE_WEB_APP: 'aspdotnetdockerapp'
