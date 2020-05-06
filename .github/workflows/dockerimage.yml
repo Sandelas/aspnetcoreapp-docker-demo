@@ -5,8 +5,8 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  DOCKER_IMAGE_NAME: 'vsaspdo'
-  AZURE_WEB_APP: 'vsaspdotnetdocker'
+  DOCKER_IMAGE_NAME: 'aspdotnetdocker'
+  AZURE_WEB_APP: 'aspdotnetdockerapp'
 jobs:
   build:
 
@@ -17,27 +17,27 @@ jobs:
     - name: Azure Container Registry Login
       uses: Azure/docker-login@v1
       with:
-        username: ${{ secrets.DOCKER_USER }} 
-        password: ${{ secrets.DOCKER_PASSWORD }} 
-        login-server: edtghe.azurecr.io
+        username: ${{ secrets.DOCKER_USER1 }} 
+        password: ${{ secrets.DOCKER_PASSWORD1 }} 
+        login-server: vsaspdotnetcore.azurecr.io
    
    
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag '${{env.DOCKER_IMAGE_NAME}}':latest
+      run: docker build . --file Dockerfile --tag '${{env.DOCKER_IMAGE_NAME}}':${{ github.sha }}
     - name: Tag the Docker image
-      run: docker tag '${{env.DOCKER_IMAGE_NAME}}':latest edtghe.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
+      run: docker tag '${{env.DOCKER_IMAGE_NAME}}':latest vsaspdotnetcore.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':${{ github.sha }}
     - name: Push the Docker image
-      run: docker push edtghe.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
+      run: docker push vsaspdotnetcore.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':${{ github.sha }}
       
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}     
+        creds: ${{ secrets.AZURE_CREDENTIALS1 }}     
     - name: Azure WebApp
       uses: Azure/webapps-deploy@v2
       with:
        app-name: '${{env.AZURE_WEB_APP}}'
-       images: edtghe.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':latest
+       images: vsaspdotnetcore.azurecr.io/'${{env.DOCKER_IMAGE_NAME}}':${{ github.sha }}
 
 
 
